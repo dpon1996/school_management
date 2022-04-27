@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/contorl/navigationHelper.dart';
 import 'package:interview/provider/studentProvider.dart';
+import 'package:interview/provider/subjectProvider.dart';
 import 'package:interview/screens/splashScreen/splashScreen.dart';
 import 'package:provider/provider.dart';
 
@@ -9,6 +10,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_)=>StudentProvider()),
+        ChangeNotifierProvider(create: (_)=>SubjectProvider()),
       ],
       child: const MyApp(),
     ),
