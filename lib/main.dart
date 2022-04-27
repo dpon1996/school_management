@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:interview/contorl/navigationHelper.dart';
+import 'package:interview/provider/studentProvider.dart';
 import 'package:interview/screens/splashScreen/splashScreen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    const MyApp(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_)=>StudentProvider()),
+      ],
+      child: const MyApp(),
+    ),
   );
 }
 
@@ -18,6 +26,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
