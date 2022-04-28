@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:interview/model/subject/subjectModel.dart';
 import 'package:interview/provider/subjectProvider.dart';
 import 'package:interview/screens/subject/subjectDetails/subjectDetailsPage.dart';
+import 'package:interview/screens/subject/subjectList.dart';
 import 'package:interview/supportingWidgets/loading.dart';
 import 'package:interview/supportingWidgets/nodata.dart';
 import 'package:provider/provider.dart';
@@ -30,28 +31,10 @@ class _SubjectPageState extends State<SubjectPage> {
       ),
       body: Stack(
         children: [
-          ListView.builder(
-            itemCount: _subjectProvider.subjectList.length,
-            itemBuilder: (BuildContext context, int index) {
-              SubjectModel subject = _subjectProvider.subjectList[index];
-              return ListTile(
-                  onTap: () {
-                    push(context, SubjectDetailsPage(subjectId: subject.id));
-                  },
-                  tileColor:
-                      index % 2 == 0 ? Colors.grey.shade200 : Colors.white,
-                  title: QText('${subject.name} '),
-                  subtitle: QText('${subject.teacher} '),
-                  trailing: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      QText(
-                        "${subject.credits}",
-                        fontWeight: FontWeight.w500,
-                      ),
-                      const QText("credit"),
-                    ],
-                  ));
+          SubjectList(
+            subjectList: _subjectProvider.subjectList,
+            onSelected: (subject) {
+              push(context, SubjectDetailsPage(subjectId: subject.id));
             },
           ),
 

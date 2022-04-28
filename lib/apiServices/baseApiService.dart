@@ -33,7 +33,7 @@ class BaseApiService {
           // TODO: Handle this case.
           break;
         case apiMethod.UPDATE:
-          // TODO: Handle this case.
+          response = await dio.patch(url,data: data);
           break;
       }
 

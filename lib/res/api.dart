@@ -6,3 +6,6 @@ const studentListApi = "$baseUrl/students";
 
 ///subject api
 const subjectListApi = "$baseUrl/subjects";
+
+///class api
+const classListApi = "$baseUrl/classrooms";

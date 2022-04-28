@@ -20,6 +20,7 @@ class SubjectProvider extends ChangeNotifier{
     _subjectListLoading(false);
     if(response.status){
       subjectList = subjectModelFromJson(response.response["subjects"]);
+      notifyListeners();
     }else{
       showSnackBar(response.message);
     }

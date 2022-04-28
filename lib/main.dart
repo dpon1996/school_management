@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:interview/contorl/navigationHelper.dart';
+import 'package:interview/provider/classProvider.dart';
 import 'package:interview/provider/studentProvider.dart';
 import 'package:interview/provider/subjectProvider.dart';
 import 'package:interview/screens/splashScreen/splashScreen.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(
+void main() { runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_)=>StudentProvider()),
         ChangeNotifierProvider(create: (_)=>SubjectProvider()),
+        ChangeNotifierProvider(create: (_)=>ClassProvider()),
       ],
       child: const MyApp(),
     ),
