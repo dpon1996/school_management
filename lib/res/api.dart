@@ -9,3 +9,6 @@ const subjectListApi = "$baseUrl/subjects";
 
 ///class api
 const classListApi = "$baseUrl/classrooms";
+
+///registration api
+const registrationApi = "$baseUrl/registration";

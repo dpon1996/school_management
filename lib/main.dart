@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/contorl/navigationHelper.dart';
 import 'package:interview/provider/classProvider.dart';
+import 'package:interview/provider/registrationProvider.dart';
 import 'package:interview/provider/studentProvider.dart';
 import 'package:interview/provider/subjectProvider.dart';
 import 'package:interview/screens/splashScreen/splashScreen.dart';
@@ -12,6 +13,7 @@ void main() { runApp(
         ChangeNotifierProvider(create: (_)=>StudentProvider()),
         ChangeNotifierProvider(create: (_)=>SubjectProvider()),
         ChangeNotifierProvider(create: (_)=>ClassProvider()),
+        ChangeNotifierProvider(create: (_)=>RegistrationProvider()),
       ],
       child: const MyApp(),
     ),

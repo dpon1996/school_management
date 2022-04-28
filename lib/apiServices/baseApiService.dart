@@ -30,7 +30,7 @@ class BaseApiService {
           response = await dio.post(url, data: data);
           break;
         case apiMethod.DELETE:
-          // TODO: Handle this case.
+          response = await dio.delete(url);
           break;
         case apiMethod.UPDATE:
           response = await dio.patch(url,data: data);
@@ -42,7 +42,7 @@ class BaseApiService {
       ApiResponse apiResponse = ApiResponse(
         statusCode: 200,
         status: true,
-        response: response?.data,
+        response: response.data,
         message: "ok",
       );
 
