@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:interview/res/images.dart';
+import 'package:interview/screens/classRoom/classroomDetails/classroomLayout/classroomLayout.dart';
+import 'package:interview/screens/classRoom/classroomDetails/classroomLayout/conferenceRoomLayout.dart';
 import 'package:interview/screens/classRoom/classroomDetails/subject/subjectDetails.dart';
 import 'package:provider/provider.dart';
 
@@ -30,9 +33,35 @@ class _ClassroomDetailsPageState extends State<ClassroomDetailsPage> {
       body: Stack(
         children: [
           if (_classProvider.classDetails != null)
-            const CustomScrollView(
+            CustomScrollView(
               slivers: [
-                SubjectDetails(),
+                ///subject
+                const SubjectDetails(),
+
+                const SliverToBoxAdapter(
+                  child: SizedBox(height: 16),
+                ),
+
+                ///board
+                SliverToBoxAdapter(
+                  child: Center(
+                    child: Image.asset(
+                      boardImg,
+                      width: 200,
+                    ),
+                  ),
+                ),
+
+                ///layout
+                _classProvider.classDetails!.layout == "conference"
+                    ? ConferenceRoomLayout(
+                        size: _classProvider.classDetails!.size,
+                      )
+                    : ClassroomLayout(
+                        size: _classProvider.classDetails!.size,
+                      ),
+
+
               ],
             ),
 
