@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:interview/contorl/navigationHelper.dart';
 import 'package:interview/model/registration/registrationModel.dart';
 import 'package:interview/provider/registrationProvider.dart';
+import 'package:interview/screens/registration/newRegistration/newRegistrationPage.dart';
 import 'package:interview/screens/registration/registrationDetails/registrationDetailsPage.dart';
+import 'package:interview/supportingWidgets/QButton.dart';
 import 'package:interview/supportingWidgets/Qtext.dart';
 import 'package:interview/supportingWidgets/loading.dart';
 import 'package:interview/supportingWidgets/nodata.dart';
@@ -26,6 +28,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
         titleSpacing: 0,
         title: const Text("Registration Page"),
       ),
+
+      bottomNavigationBar: QButton(
+        onTap: (){
+          push(context, const NewRegistrationPage());
+        },
+        radius: 0,
+        title: "New Registration",
+      ),
+
       body: Stack(
         children: [
           ListView.builder(

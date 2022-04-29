@@ -28,6 +28,13 @@ ApiResponse generateApiResponse(int statusCode) {
         message: "Invalid Format",
       );
 
+    case 308:
+      return ApiResponse(
+        status: false,
+        statusCode: statusCode,
+        message: "Re-direction error",
+      );
+
     ///unknown response
     default:
       return ApiResponse(

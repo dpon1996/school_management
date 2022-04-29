@@ -5,6 +5,7 @@ import 'package:interview/contorl/GenerateApiResponse.dart';
 import 'package:interview/contorl/printString.dart';
 import 'package:interview/model/apiResponseModel.dart';
 
+
 enum apiMethod {
   GET,
   POST,
@@ -33,11 +34,9 @@ class BaseApiService {
           response = await dio.delete(url);
           break;
         case apiMethod.UPDATE:
-          response = await dio.patch(url,data: data);
+          response = await dio.patch(url, data: data);
           break;
       }
-
-
 
       ApiResponse apiResponse = ApiResponse(
         statusCode: 200,
@@ -52,7 +51,7 @@ class BaseApiService {
       if (e.error is SocketException) {
         return generateApiResponse(101);
       } else {
-        return generateApiResponse(103);
+        return generateApiResponse(e.response?.statusCode ?? 0);
       }
     } catch (e) {
       PrintString(e);

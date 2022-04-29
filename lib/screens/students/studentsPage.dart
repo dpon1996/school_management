@@ -3,6 +3,7 @@ import 'package:interview/contorl/navigationHelper.dart';
 import 'package:interview/model/student/studentModel.dart';
 import 'package:interview/provider/studentProvider.dart';
 import 'package:interview/screens/students/studentDetails/studentDetailsPage.dart';
+import 'package:interview/screens/students/studentList.dart';
 import 'package:interview/supportingWidgets/Qtext.dart';
 import 'package:provider/provider.dart';
 
@@ -29,19 +30,10 @@ class _StudentsPageState extends State<StudentsPage> {
       ),
       body: Stack(
         children: [
-          ListView.builder(
-            itemCount: _studentProvider.studentList.length,
-            itemBuilder: (BuildContext context, int index) {
-              StudentModel student = _studentProvider.studentList[index];
-              return ListTile(
-                onTap: () {
-                  push(context, StudentDetailsPage(studentId: student.id));
-                },
-                tileColor: index % 2 == 0 ? Colors.grey.shade200 : Colors.white,
-                title: QText('${student.name} '),
-                subtitle: QText('${student.email} '),
-                trailing: QText('Age : ${student.age}'),
-              );
+          StudentList(
+            studentList: _studentProvider.studentList,
+            selectedStudent: (student) {
+              push(context, StudentDetailsPage(studentId: student.id));
             },
           ),
 

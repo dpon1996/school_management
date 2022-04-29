@@ -138,6 +138,72 @@ class RegistrationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+
+  ///new reg
+  List<StudentModel> studentList = [];
+  List<SubjectModel> subjectList = [];
+
+  bool studentListLoading = true;
+  bool subjectListLoading = true;
+
+  bool registrationLoading = false;
+  _registrationLoading(bool status){
+    registrationLoading = status;
+    notifyListeners();
+  }
+
+  _studentListLoading(bool status){
+    studentListLoading = status;
+    notifyListeners();
+  }
+
+  _subjectListLoading(bool status){
+    subjectListLoading = status;
+    notifyListeners();
+  }
+
+  getStudentListApiCall() async {
+    _studentListLoading(true);
+    ApiResponse response = await StudentApiService().getStudentList();
+    _studentListLoading(false);
+    if(response.status){
+      studentList = studentModelFromJson(response.response["students"]);
+      notifyListeners();
+    }else{
+      showSnackBar(response.message);
+    }
+    PrintString(response.toJson());
+  }
+
+
+  getSubjectListApiCall()async{
+    _subjectListLoading(true);
+    ApiResponse response = await SubjectApiService().getSubjectList();
+    _subjectListLoading(false);
+    if(response.status){
+      subjectList = subjectModelFromJson(response.response["subjects"]);
+      notifyListeners();
+    }else{
+      showSnackBar(response.message);
+    }
+    PrintString(response.toJson());
+  }
+
+
+  newRegistrationApiCall(studentId,subjectId)async{
+    _registrationLoading(true);
+    ApiResponse response = await RegistrationApiService().newRegistration(studentId, subjectId);
+    _registrationLoading(false);
+    PrintString(response.toJson());
+    if(response.status){
+
+    }else{
+      showSnackBar(response.message);
+    }
+  }
+
+
+
   clearData() {
     regDetails = null;
     subject = null;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interview/res/colors.dart';
 import 'package:interview/res/images.dart';
+import 'package:interview/supportingWidgets/Qtext.dart';
 
 class ConferenceRoomLayout extends StatelessWidget {
   final int size;
@@ -22,12 +23,21 @@ class ConferenceRoomLayout extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                color: Colors.red,
+                alignment: Alignment.center,
+                color: Colors.grey.shade400,
                 height: ((size - (size ~/ 2)) * 58) - 8,
+                child: const RotatedBox(
+                  quarterTurns: -1,
+                  child: QText(
+                    "Desk",
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
             ),
             Expanded(
-              child: _seatList(size: size ~/ 2),
+              child: _seatList(size: size ~/ 2,isLeft: false),
             ),
           ],
         ),
@@ -35,7 +45,7 @@ class ConferenceRoomLayout extends StatelessWidget {
     );
   }
 
-  _seatList({required int size}) {
+  _seatList({required int size, bool isLeft = true}) {
     return ListView.separated(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
@@ -45,7 +55,11 @@ class ConferenceRoomLayout extends StatelessWidget {
           child: SizedBox(
             height: 50,
             width: 50,
-            child: Image.asset(seatImg),
+            child: Transform(
+              alignment: Alignment.center,
+              transform: isLeft ?Matrix4.rotationY(0) :Matrix4.rotationY(3.14),
+              child: Image.asset(seatImg),
+            ),
           ),
         );
       },
